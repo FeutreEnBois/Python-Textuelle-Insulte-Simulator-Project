@@ -1,5 +1,5 @@
 import sys
-import player
+from player import *
 import insulte
 
 print(insulte.getPhrase)
@@ -19,8 +19,11 @@ game_over = True
 while True:
     if game_over:
         show_go_screen()
+        print(player("test").classe)
+        Player1 = player(input())
         game_over = False
 
         score = 0
+    
     #process input (events)
     break
