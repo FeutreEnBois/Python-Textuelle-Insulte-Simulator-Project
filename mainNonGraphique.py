@@ -1,8 +1,8 @@
 import sys
 from player import *
-import insulte
+from insulte import *
 
-print(insulte.getPhrase)
+print(getPhrase)
 
 def terminate():
     sys.exit()
@@ -14,16 +14,39 @@ def show_go_screen():
     print("\t\tPress ENTER to begin")
     input()
 
+def ChooseAPlayer(P):
+    if not P:
+        P = Player1
+    elif P == Player1:
+        P = Player2
+    else:
+        P == Player1
+    return P
 
 game_over = True
 while True:
     if game_over:
         show_go_screen()
-        print(player("test").classe)
-        Player1 = player(input())
+        print("Player 1 : Choose your character ! (Write is name) ")
+        print(player("test", 0).classe)
+        Player1 = player(input(), 1)
+        print("Player 2 : Choose your character ! (Write is name) ")
+        print(player("test", 0).classe)
+        Player2 = player(input(), 2)
+        print()
+        print("!!! The match will now begin !!!")
+        print("\t" + Player1.name + " vs " + Player2.name)
+        P = ""
         game_over = False
 
-        score = 0
+    P = ChooseAPlayer(P)
+    print(P.name)
+    print("Player " + str(P.P) + " it's your turn")
+    print("here are your word for this turn : ")
+    print(" ".join(str(getPhrase())))
+    P = ChooseAPlayer(P)
+    print(P.name)
+    score = 0
     
     #process input (events)
     break
