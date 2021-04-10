@@ -1,5 +1,6 @@
 class player:
     def __init__(self,name):
+        self.classe = ["La vieille", 'Famille', "Travail", "Mage"]
         self.name = name
         if self.name == "La vieille":
             self.pv = 60
