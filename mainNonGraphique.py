@@ -2,6 +2,8 @@ import sys
 from player import *
 from insulte import *
 
+sujet = Sujet("m", 5, "m")
+print(sujet)
 print(getPhrase)
 
 def terminate():
@@ -43,7 +45,9 @@ while True:
     print(P.name)
     print("Player " + str(P.P) + " it's your turn")
     print("here are your word for this turn : ")
-    print(" ".join(str(getPhrase())))
+    word = list(getPhrase())
+    for i in range(len(word)):
+        print(word[i])
     P = ChooseAPlayer(P)
     print(P.name)
     score = 0
