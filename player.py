@@ -22,7 +22,7 @@ class player:
         if name == 1:
             self.name = "Mage"
             self.pv = 60
-            self.resistance = "Lieux"
+            self.resistance = "Argent"
             self.weakness = "Famille"
         elif name == 2:
             self.name = "La vieille"
@@ -32,6 +32,6 @@ class player:
         elif name == 3:
             self.name = "L'étudiant"
             self.pv = 60
-            self.resistance = ""
+            self.resistance = "Animaux"
             self.weakness = "Argent"
         

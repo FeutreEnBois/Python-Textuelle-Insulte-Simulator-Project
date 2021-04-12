@@ -2,10 +2,6 @@ import sys
 from player import *
 from insulte import *
 
-sujet = Sujet("m", 5, "m")
-print(sujet)
-print(getPhrase())
-
 def terminate():
     sys.exit()
 
@@ -22,11 +18,11 @@ def ChooseAPlayer(P):
     elif P == Player1:
         P = Player2
     else:
-        P == Player1
+        P = Player1
     return P
 
 game_over = True
-while True:
+while game_over:
     if game_over:
         show_go_screen()
         print("*************************************************************************************")
@@ -60,12 +56,7 @@ while True:
         Player2 = player(2,int(input("Entrer le numero correspondant au combatant choisi.")))
         print("")
         print("Vous avez choisi:",Player2.name)
-        # print("Player 1 : Choose your character ! (Write is name) ")
-        # classe = player(0, "test").classe
-        # Player1 = player(input(), 1)
-        # print("Player 2 : Choose your character ! (Write is name) ")
-        # # print(player("test", 0).classe)
-        # Player2 = player(input(), 2)
+
         print()
         print("*************************************************************************************")
         print("*                           !!! The match will now begin !!!                        *")
@@ -74,27 +65,70 @@ while True:
         P = ""
         game_over = False
 
-    P = ChooseAPlayer(P)
-    print(P.name)
-    print("Player " + str(P.P) + " it's your turn")
-    print("here are your word for this turn : ")
-    word = list(getPhrase())
-    for i in range(len(word)):
-        print(word[i] , "[" + str(i) + "]")
-    insulte = [""]*10
-    print("Choose a word with it's index [0 - x]")
-    print("And place it in you insulte with the number of it's place [0 -x]")
-    print("When you insult is ready enter 'PUNCH'")
-    print("your insult : ", " ".join(insulte))
-    enter = ""
-    while enter != "PUNCH":
-        enter = int(input("which word do you choose : "))
-        print("you choose ", word[enter])
-        place = int(input(" where do you place it ? [0 - x]"))
 
-    P = ChooseAPlayer(P)
-    print(P.name)
-    score = 0
+        while (Player1.pv > 0 and Player2.pv > 0):
+            score = 0
+            P = ChooseAPlayer(P)
+            E = ChooseAPlayer(P)
+            print(P.name)
+            print("pv adversaire : ", E.pv)
+            print("Player " + str(P.P) + " c'est à votre tour")
+            print("Voici vos mots pour ce : ")
+            word = list(getPhrase())
+            for i in range(len(word)):
+                print(word[i] , "[" + str(i) + "]")
+            insulte = []*10
+            print("Choisissez un mot avec son index[0 - x]")
+            print("Et placez le à l'endroit voulu dans la phrase [0 -x]")
+            print("Quand votre insulte est prête, tapez 'PUNCH'")
+            enter = ""
+            while (enter != "PUNCH" or enter != "punch"):
+                r = ""
+                for i in insulte:
+                    r += i.name
+                    r+=" "
+                print(r)
+                enter = input("Quels mot choisissez vous? : ")
+                if (enter == "PUNCH" or enter == "punch"):
+                    break
+                else :
+                    enter = int(enter)
+
+                print("Vous vez choisi ", word[enter])
+                place = int(input(" Où le placez-vous ? [0 - x]"))
+                insulte.insert(place, word[enter])
+
+                if type(word[enter]) == type(Principal("",0,"")) or type(word[enter]) == type(Sujet("",0,"")):
+                    if word[enter].type in E.weakness:
+                        score += word[enter].point * 2
+                    elif word[enter].type in E.resistance:
+                        score += word[enter].point / 2
+                    else :
+                        score += word[enter].point
+                else:
+                    score += word[enter].point
+
+
+            
+
+            # vérification des erreurs d'orthographe du joueur
+            for i in range(len(insulte)-1):
+                if type(insulte[i]) == type(insulte[i+1]):
+                    print("point divisé par 2, vous avez utilisé de fois le meme type de mot d'affilez !")
+                    score /= 24
+                if len(insulte) > 5 :
+                    print("phrase longue, pti malus : 0 score")
+                    score = 0
+            E.pv -= score
+            print(score)
+
+    if Player1.pv <=0:
+        print("Le joueur 2 l'emporte ")
+    else:
+        print("Le joueur 1 l'emporte")
+
+    print("recommencé a jouer ?")
+    loop = input("(y / n) : ")
+    if loop == "y":
+        game_over = True
     
-    #process input (events)
-    break
