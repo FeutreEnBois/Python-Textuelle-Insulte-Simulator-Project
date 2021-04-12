@@ -86,8 +86,9 @@ while True:
     print("And place it in you insulte with the number of it's place [0 -x]")
     print("When you insult is ready enter 'PUNCH'")
     print("your insult : ", " ".join(insulte))
-    enter = int(input("which word do you choose : "))
+    enter = ""
     while enter != "PUNCH":
+        enter = int(input("which word do you choose : "))
         print("you choose ", word[enter])
         place = int(input(" where do you place it ? [0 - x]"))
 
