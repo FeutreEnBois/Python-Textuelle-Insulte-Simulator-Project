@@ -1,17 +1,14 @@
-import sys
 from player import *
 from insulte import *
 
-def terminate():
-    sys.exit()
-
-
+# ne fait rien jusqu'a ce que l'utilisateur appuie sur enter
 def show_go_screen():
     print("\t\tOh sir ! (not) an insult simulator")
     print("\t\tThis game plays with the numpad")
     print("\t\tPress ENTER to begin")
     input()
 
+# change le joueur actuel
 def ChooseAPlayer(P):
     if not P:
         P = Player1
@@ -21,6 +18,7 @@ def ChooseAPlayer(P):
         P = Player1
     return P
 
+# boucle du jeu
 game_over = True
 while game_over:
     if game_over:
@@ -82,6 +80,8 @@ while game_over:
             print("Et placez le à l'endroit voulu dans la phrase [0 -x]")
             print("Quand votre insulte est prête, tapez 'PUNCH'")
             enter = ""
+
+            # tour tu joueur
             while (enter != "PUNCH" or enter != "punch"):
                 r = ""
                 for i in insulte:
@@ -98,6 +98,8 @@ while game_over:
                 place = int(input(" Où le placez-vous ? [0 - x]"))
                 insulte.insert(place, word[enter])
 
+                # compte des points :
+                # applique des malus / bonus en fonction des résistance / faiblesse adverse
                 if type(word[enter]) == type(Principal("",0,"")) or type(word[enter]) == type(Sujet("",0,"")):
                     if word[enter].type in E.weakness:
                         score += word[enter].point * 2
@@ -112,9 +114,10 @@ while game_over:
             
 
             # vérification des erreurs d'orthographe du joueur
+            # application de malus en conséquence
             for i in range(len(insulte)-1):
                 if type(insulte[i]) == type(insulte[i+1]):
-                    print("point divisé par 2, vous avez utilisé de fois le meme type de mot d'affilez !")
+                    print("point divisé par 2, vous avez utilisé deux fois le meme type de mot d'affilez !")
                     score /= 24
                 if len(insulte) > 5 :
                     print("phrase longue, pti malus : 0 score")
@@ -123,9 +126,9 @@ while game_over:
             print(score)
 
     if Player1.pv <=0:
-        print("Le joueur 2 l'emporte ")
+        print("!!! Le joueur 2 l'emporte !!!")
     else:
-        print("Le joueur 1 l'emporte")
+        print("!!! Le joueur 1 l'emporte !!!")
 
     print("recommencé a jouer ?")
     loop = input("(y / n) : ")

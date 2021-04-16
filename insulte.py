@@ -1,8 +1,9 @@
 from random import randint
 
+
+#On stock les bouts de phrases  dans une classe pour pouvoir les récupérer plus tard, avec leur dégat et leur type si présent.
 class insulte:
     def __init__(self):
-        self.font = ""
         self.accroche = [Accroche("J'espere que", 2), Accroche("a un moment", 2), Accroche("imagine quand meme que", 3), Accroche("avoue au moins que", 3)]
         self.sujet = [Sujet("ton caniche", 6, "animaux"),Sujet("ton chat",6,"animaux"),Sujet("ta voiture",6,"argent"),Sujet("Ton job",4,"argent"),Sujet("Ton père",8,"famille"),Sujet("Ton descendant",6,"famille")]
         self.complement = [Complement("demain", 1), Complement("aujourd'hui", 1), Complement("rue", 2) , Complement("hopital", 1), Complement("ce matin",1),Complement("se soir",1) , Complement("dans un combat",2), Complement("ta chambre",1),  Complement("in the kitchen",3)]
@@ -12,6 +13,7 @@ class insulte:
         self.adjectif = [Adjectif("bleu",2), Adjectif("mort",4),Adjectif("grand",3),Adjectif("petit",3),Adjectif("égoïste",6),Adjectif("pas courageux", 3)]
 
 
+#On récupère les bouts de phrases, leur dégat et leur type pour les "sujets" et "Principal"
 class Accroche:
     def __init__(self, name, point):
         self.name = name
@@ -64,6 +66,8 @@ class Adjectif:
     def __str__(self):
         return self.name
 
+
+#Cette fonction permet d'obtenir 3 bouts de phrases de chaque catégories grace au fonction "get" et les renvoyer.
 def getPhrase():
     res = []
     for _ in range(3):
@@ -75,14 +79,9 @@ def getPhrase():
         res.append(getAdjectif(insulte().adjectif))
         res.append(getVerb(insulte().verb))
     return res
-        #   def __init__(self):
-        # self.insultFinal=["you six piece chicken Mcnobody", "hope you get hit by a truck and survive", "like a gta character", "you meth-head", "you donut", "with your yeeyee *** haricut", "you man child", "you precious stuck up bi... du-dude", "and remember your poor bruh", "you absolute cretin", "you fool", "hope a creeper blow up your house", "hope you step on a lego"]
-        # self.sujet=["your hair", "your dog", "you","your car", "your job", "your cat", "your MOM !", "your sister", "your brother", "your uncle", "your aunt", "your family", "your hat", "your outfit", "your face", "your bank account", "your beard"]
-        # self.starter=["looks like", "should", "smells like", "act like", "you should know that"]
-        # self.complement=["tomorow", "today", "street", "hospital", "this morning", "tonight", "in a fight", "your room", "in the kitchen", ""]
-        # self.liaisons=["so","if","almost","then", "it"]
-        # self.verb=["is", "will be", "eating", "eat", "fight","walking","walk","sleeping","sleep","fall","falling","move","moving"] 
 
+
+#Ces fonctions vont récupérées aléatoirement un bout de phrase de leur catégorie 
 def getAccroche(accroche):
     res = accroche[randint(0, len(accroche) -1)]
     return res
