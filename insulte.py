@@ -8,7 +8,7 @@ class insulte:
         self.complement = [Complement("demain", 1), Complement("aujourd'hui", 1), Complement("rue", 2) , Complement("hopital", 1), Complement("ce matin",1),Complement("se soir",1) , Complement("dans un combat",2), Complement("ta chambre",1),  Complement("in the kitchen",3)]
         self.liaisons = [Liaisons("un", 1), Liaisons("est", 1), Liaisons("une", 1), Liaisons("du", 1),Liaisons("a peine plus", 1), Liaisons("que", 1), Liaisons("un peu comme", 1)]
         self.principal = [Principal("est si moche", 8, "argent"), Principal("jaune comme", 2, "famille"), Principal("tel une voiture", 3, "argent"), Principal("un déambulateur", 5, "famille"), Principal("sac a caca", 9, "animaux")]
-        self.verb = [Verb("est",4), Verb("mange",3), Verb("se bat",2), Verb("marche",5),Verb("sleep",4),Verb("tombe",5),Verb("bouge",4, Verb("fuit", 4)]
+        self.verb = [Verb("est",4), Verb("mange",3), Verb("se bat",2), Verb("marche",5),Verb("sleep",4),Verb("tombe",5),Verb("bouge",4), Verb("fuit", 4)]
         self.adjectif = [Adjectif("bleu",2), Adjectif("mort",4),Adjectif("grand",3),Adjectif("petit",3),Adjectif("égoïste",6),Adjectif("pas courageux", 3)]
 
 
